@@ -4,12 +4,18 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SudokuSolver {
+	/**
+	 * Provides functionality for solving "easy" sudokus. It uses a scanner to read user input,
+	 * regex to separate digits from unnecessary characters, a 2D array, and debugging
+	 * statements. The solve method uses a recursive backtracking approach solves each unknown number.
+	 *
+	 * @author William Dong (bobhmazilla@gmail.com)
+	 * @version 1.0.0
+	 */
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter in the sudoku puzzle:");
-//		String input = sc.next();
-//		System.out.println(input);
 		String input2 = "";
 		int[][] nums = new int[9][9];
 		StringBuilder sudoku = new StringBuilder();
@@ -25,12 +31,10 @@ public class SudokuSolver {
 			if (input2.isEmpty()) {
 				break;
 			}
-//			System.out.println(input2);
 			sudoku.append(input2);
 		}
 		System.out.println(Arrays.deepToString(nums));
 		sudoku(nums);
-//		System.out.println(sudoku(nums));
 		sc.close();
 		
 	}
@@ -87,6 +91,8 @@ public class SudokuSolver {
     }
 }
 /*
+this is a sample test
+
 [[5,3,0,0,7,0,0,0,0],
 [6,0,0,1,9,5,0,0,0],
 [0,9,8,0,0,0,0,6,0],
@@ -96,4 +102,5 @@ public class SudokuSolver {
 [0,6,0,0,0,0,2,8,0],
 [0,0,0,4,1,9,0,0,5],
 [0,0,0,0,8,0,0,7,9]]
+
 */
