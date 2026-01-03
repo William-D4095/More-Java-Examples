@@ -1,0 +1,2 @@
+This project requests the user to input 5 numbers.
+It outputs the 5 numbers that you input, the sum of all the numbers, the sum of all of the numbers squared, and the square of the sum of all of the numbers.
