@@ -29,13 +29,62 @@ public class SudokuSolver {
 			sudoku.append(input2);
 		}
 		System.out.println(Arrays.deepToString(nums));
+		sudoku(nums);
+//		System.out.println(sudoku(nums));
 		sc.close();
 		
 	}
     public static int[][] sudoku(int[][] puzzle) {
-        return puzzle;
+        // write logic to check valid numbers and store them
+    	solve(puzzle);
+    	System.out.println(Arrays.deepToString(puzzle));
+    	return puzzle;
     }
-    
+    public static boolean solve(int[][] puzzle) {
+    	for (int i = 0; i < 9; i++) { // row
+    		for (int j = 0; j < 9; j++) { // column
+    			if (puzzle[i][j] == 0) {
+	    			for (int num = 1; num <= 9; num++) {
+	    				if (isValid(puzzle, i, j, num)) {
+	    					puzzle[i][j] = num;
+	    					if (solve(puzzle)) {
+	    						return true;
+	    					}
+	    					puzzle[i][j] = 0;
+	    				}
+	    			}
+	    			return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
+    public static boolean isValid(int nums[][], int row, int column, int num) {
+    	// check for duplicates in row/column
+		
+    	for (int i = 0; i < 9; i++) {
+			if (nums[row][i] == num) { // checks if there's a duplicate in the row
+				return false;
+			}
+			if (nums[i][column] == num) { // checks if there's a duplicate in the column
+				return false;
+			}	
+		}
+		
+		// check for duplicates in sub-square
+		
+		int backtrackRow = row % 3;
+		int backtrackColumn = column % 3;
+		
+		for (int i = 0; i < 3; i++) { // row
+			for (int j = 0; j < 3; j++) { // check column within row i
+				if (nums[row - backtrackRow + i][column - backtrackColumn + j] == num) {
+					return false;
+				}
+			}
+		}
+    	return true;
+    }
 }
 /*
 [[5,3,0,0,7,0,0,0,0],
